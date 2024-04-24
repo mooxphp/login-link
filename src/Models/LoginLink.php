@@ -1,12 +1,12 @@
 <?php
 
-namespace Moox\Builder\Models;
+namespace Moox\LoginLink\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class LoginLink extends Model
 {
-    protected $table = 'items';
+    protected $table = 'login_links';
 
     protected $fillable = [
         'name',

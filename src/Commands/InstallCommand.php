@@ -1,6 +1,6 @@
 <?php
 
-namespace Moox\Builder\Commands;
+namespace Moox\LoginLink\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -20,14 +20,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'mooxbuilder:install';
+    protected $signature = 'mooxlogin-link:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Installs Moox Builder, publishes configuration, migrations and registers plugins.';
+    protected $description = 'Installs Moox LoginLink, publishes configuration, migrations and registers plugins.';
 
     /**
      * Execute the console command.
@@ -66,39 +66,39 @@ class InstallCommand extends Command
 
     public function welcome(): void
     {
-        info('Welcome to Moox Builder Installer');
+        info('Welcome to Moox LoginLink Installer');
     }
 
     public function publishConfiguration(): void
     {
         if (confirm('Do you wish to publish the configuration?', true)) {
-            if (! File::exists('config/builder.php')) {
-                info('Publishing Builder Configuration...');
-                $this->callSilent('vendor:publish', ['--tag' => 'builder-config']);
+            if (! File::exists('config/login-link.php')) {
+                info('Publishing LoginLink Configuration...');
+                $this->callSilent('vendor:publish', ['--tag' => 'login-link-config']);
 
                 return;
             }
-            warning('The Builder config already exist. The config will not be published.');
+            warning('The LoginLink config already exist. The config will not be published.');
         }
     }
 
     public function publishMigrations(): void
     {
         if (confirm('Do you wish to publish the migrations?', true)) {
-            if (Schema::hasTable('items')) {
-                warning('The items table already exists. The migrations will not be published.');
+            if (Schema::hasTable('login_links')) {
+                warning('The login_links table already exists. The migrations will not be published.');
 
                 return;
             }
-            info('Publishing Items Migrations...');
-            $this->callSilent('vendor:publish', ['--tag' => 'builder-migrations']);
+            info('Publishing LoginLinks Migrations...');
+            $this->callSilent('vendor:publish', ['--tag' => 'login-link-migrations']);
         }
     }
 
     public function runMigrations(): void
     {
         if (confirm('Do you wish to run the migrations?', true)) {
-            info('Running Builder Migrations...');
+            info('Running LoginLink Migrations...');
             $this->callSilent('migrate');
         }
     }
@@ -112,12 +112,12 @@ class InstallCommand extends Command
 
             $intend = '                ';
 
-            $namespace = "\Moox\Builder";
+            $namespace = "\Moox\LoginLink";
 
             $pluginsToAdd = multiselect(
                 label: 'These plugins will be installed:',
-                options: ['BuilderPlugin'],
-                default: ['BuilderPlugin'],
+                options: ['LoginLinkPlugin'],
+                default: ['LoginLinkPlugin'],
             );
 
             $function = '::make(),';
@@ -158,6 +158,6 @@ class InstallCommand extends Command
 
     public function finish(): void
     {
-        note('Moox Builder installed successfully. Enjoy!');
+        note('Moox LoginLink installed successfully. Enjoy!');
     }
 }

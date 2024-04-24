@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Moox\Builder;
+namespace Moox\LoginLink;
 
-use Moox\Builder\Commands\InstallCommand;
+use Moox\LoginLink\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class BuilderServiceProvider extends PackageServiceProvider
+class LoginLinkServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('builder')
+            ->name('login-link')
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
-            ->hasMigrations(['create_items_table'])
+            ->hasMigrations(['create_login_links_table'])
             ->hasCommand(InstallCommand::class);
     }
 }

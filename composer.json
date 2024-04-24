@@ -1,6 +1,6 @@
 {
-    "name": "moox/builder",
-    "description": "This template is used for generating all Moox packages.",
+    "name": "moox/login-link",
+    "description": "This is my package login-link",
     "keywords": [
         "Laravel",
         "Filament",
@@ -21,13 +21,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Moox\\Builder\\": "src"
+            "Moox\\LoginLink\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Moox\\Builder\\BuilderServiceProvider"
+                "Moox\\LoginLink\\LoginLinkServiceProvider"
             ]
         }
     },
